@@ -2,7 +2,8 @@
 
 Landing de facilitación profesional — Victor Paredes (@0xbik).
 
-- **Stack:** HTML/CSS/JS vanilla · Vercel
+- **Repo:** https://github.com/vprds/facilitacion-es  
+**Stack:** HTML/CSS/JS vanilla · Vercel
 - **Dominio:** facilitacion.es (GoDaddy → Vercel)
 
 ## Deploy
