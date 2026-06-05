@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>facilitacion.es — Victor Paredes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400;1,700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --cream:  #F5F0E8;
+  --yellow: #FFD02F;
+  --yellow-d: #E8BC00;
+  --bg:     #F5F0E8;
+  --dark:   #1a1a1a;
+  --mid:    #555;
+  --light:  #999;
+  --border: rgba(0,0,0,.1);
+  --card:   #fff;
+  --green:  #C8F5A0;
+  --pink:   #FFB3D1;
+  --blue:   #B3D4FF;
+  --purple: #DDB3FF;
+}
+
+html{scroll-behavior:smooth}
+body{
+  background:var(--cream);color:var(--dark);
+  font-family:'Nunito',sans-serif;
+  min-height:100vh;overflow-x:hidden;cursor:none
+}
+
+/* ── CURSOR ── */
+.cur{width:14px;height:14px;background:var(--yellow);border:2px solid var(--dark);border-radius:50%;position:fixed;z-index:9999;pointer-events:none;transform:translate(-50%,-50%);transition:transform .15s}
+.cur.big{transform:translate(-50%,-50%) scale(2.2)}
+
+/* ── GRID BG ── */
+body::before{
+  content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(0,0,0,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(0,0,0,.04) 1px,transparent 1px);
+  background-size:28px 28px
+}
+
+/* ── LAYOUT ── */
+.wrap{position:relative;z-index:1;max-width:900px;margin:0 auto;padding:0 28px}
+
+/* ── NAV ── */
+nav{
+  padding:24px 0;display:flex;align-items:center;justify-content:space-between;
+  opacity:0;animation:fade-in .6s .1s forwards
+}
+.nav-logo{
+  font-weight:800;font-size:1rem;letter-spacing:-.02em;
+  display:flex;align-items:center;gap:8px
+}
+.nav-dot{width:8px;height:8px;background:var(--yellow);border:2px solid var(--dark);border-radius:50%;display:inline-block}
+.nav-pill{
+  background:var(--dark);color:var(--cream);
+  border-radius:100px;padding:8px 18px;
+  font-size:.82rem;font-weight:700;letter-spacing:.01em;
+  cursor:none;text-decoration:none;
+  transition:background .2s,transform .15s
+}
+.nav-pill:hover{background:var(--yellow);color:var(--dark);transform:scale(1.04)}
+
+/* ── HERO ── */
+.hero{
+  padding:48px 0 60px;
+  opacity:0;animation:fade-in .7s .2s forwards
+}
+
+.hero-tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:32px}
+.tag{
+  display:inline-flex;align-items:center;gap:6px;
+  background:var(--card);border:1.5px solid var(--border);
+  border-radius:100px;padding:6px 14px;
+  font-size:.78rem;font-weight:700;color:var(--mid);letter-spacing:.01em
+}
+.tag.yellow{background:var(--yellow);border-color:transparent;color:var(--dark)}
+.tag .dot{width:6px;height:6px;border-radius:50%;background:currentColor;opacity:.5}
+
+.hero-h1{
+  font-size:clamp(2.8rem,7vw,5rem);font-weight:900;line-height:1.08;
+  letter-spacing:-.04em;color:var(--dark);margin-bottom:28px
+}
+.hero-h1 .hl{
+  position:relative;display:inline-block;color:var(--dark)
+}
+.hero-h1 .hl::after{
+  content:'';position:absolute;bottom:4px;left:-2px;right:-2px;height:10px;
+  background:var(--yellow);z-index:-1;border-radius:3px;
+  transform:skewX(-3deg)
+}
+
+.hero-sub{
+  font-size:1.12rem;font-weight:400;line-height:1.7;color:var(--mid);
+  max-width:520px;margin-bottom:40px
+}
+
+.hero-actions{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+
+.btn-main{
+  display:inline-flex;align-items:center;gap:10px;
+  background:var(--dark);color:var(--cream);
+  border:2px solid var(--dark);border-radius:100px;
+  padding:14px 28px;font-family:'Nunito',sans-serif;
+  font-size:.95rem;font-weight:800;letter-spacing:.01em;
+  cursor:none;text-decoration:none;
+  transition:background .2s,color .2s,transform .15s
+}
+.btn-main:hover{background:var(--yellow);color:var(--dark);transform:translateY(-2px)}
+.btn-main .arrow{transition:transform .2s}
+.btn-main:hover .arrow{transform:translateX(4px)}
+
+.btn-ghost{
+  display:inline-flex;align-items:center;gap:8px;
+  background:transparent;color:var(--dark);
+  border:2px solid var(--border);border-radius:100px;
+  padding:14px 24px;font-family:'Nunito',sans-serif;
+  font-size:.88rem;font-weight:700;
+  cursor:none;text-decoration:none;
+  transition:border-color .2s,transform .15s
+}
+.btn-ghost:hover{border-color:var(--dark);transform:translateY(-2px)}
+
+/* ── STATS FLOTANTES ── */
+.hero-stats{
+  display:flex;gap:12px;margin-top:48px;flex-wrap:wrap
+}
+.stat-card{
+  background:var(--card);border:1.5px solid var(--border);border-radius:16px;
+  padding:16px 20px;min-width:130px;
+  box-shadow:0 2px 0 var(--border);
+  transition:transform .2s,box-shadow .2s
+}
+.stat-card:hover{transform:translateY(-3px);box-shadow:0 6px 0 var(--border)}
+.stat-n{font-size:1.7rem;font-weight:900;letter-spacing:-.04em;color:var(--dark);line-height:1}
+.stat-n span{font-size:1rem;color:var(--yellow-d)}
+.stat-l{font-size:.75rem;font-weight:600;color:var(--light);margin-top:4px;line-height:1.3}
+
+/* ── YELLOW BLOCK ── */
+.yellow-block{
+  background:var(--yellow);border-radius:24px;
+  border:2px solid var(--dark);
+  padding:48px;margin:24px 0;
+  position:relative;overflow:hidden;
+  opacity:0;animation:fade-in .7s .4s forwards
+}
+.yellow-block::before{
+  content:'';position:absolute;right:-60px;top:-60px;
+  width:200px;height:200px;border-radius:50%;
+  background:rgba(0,0,0,.06)
+}
+
+.yb-label{
+  font-family:'DM Mono',monospace;font-size:.7rem;letter-spacing:.2em;
+  color:rgba(0,0,0,.4);text-transform:uppercase;margin-bottom:20px
+}
+.yb-title{
+  font-size:clamp(1.6rem,4vw,2.4rem);font-weight:900;
+  letter-spacing:-.03em;line-height:1.2;margin-bottom:16px
+}
+.yb-sub{font-size:.95rem;font-weight:500;color:rgba(0,0,0,.6);line-height:1.6;max-width:440px}
+
+/* Grid antes/después dentro del yellow block */
+.cambios{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:32px}
+.cambio{background:rgba(255,255,255,.5);border:1.5px solid rgba(0,0,0,.1);border-radius:14px;padding:18px 20px}
+.cambio.after{background:var(--dark);border-color:transparent}
+.cambio-tag{font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:.15em;color:rgba(0,0,0,.4);text-transform:uppercase;margin-bottom:8px}
+.cambio.after .cambio-tag{color:rgba(255,208,47,.5)}
+.cambio-txt{font-size:.9rem;font-weight:600;line-height:1.45;color:var(--dark)}
+.cambio.after .cambio-txt{color:var(--cream)}
+
+/* ── SITUACIONES ── */
+.situaciones{
+  padding:24px 0;
+  opacity:0;animation:fade-in .7s .5s forwards
+}
+
+.sec-header{display:flex;align-items:baseline;gap:12px;margin-bottom:32px}
+.sec-title{font-size:1.5rem;font-weight:900;letter-spacing:-.03em}
+.sec-sub{font-size:.85rem;font-weight:600;color:var(--light)}
+
+.situ-grid{display:grid;grid-template-columns:1fr;gap:12px}
+
+.situ{
+  background:var(--card);border:1.5px solid var(--border);border-radius:20px;
+  padding:28px;display:grid;grid-template-columns:1fr auto;gap:16px;align-items:center;
+  text-decoration:none;color:inherit;cursor:none;
+  box-shadow:0 2px 0 var(--border);
+  transition:transform .2s,box-shadow .2s,border-color .2s
+}
+.situ:hover{transform:translateY(-3px);box-shadow:0 8px 0 var(--border);border-color:var(--dark)}
+
+.situ-n{
+  font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:.15em;
+  color:var(--light);text-transform:uppercase;margin-bottom:8px
+}
+.situ-title{font-size:1.1rem;font-weight:800;letter-spacing:-.02em;margin-bottom:8px}
+.situ-desc{font-size:.85rem;font-weight:500;color:var(--mid);line-height:1.55}
+
+.situ-arrow{
+  width:44px;height:44px;border-radius:50%;
+  background:var(--cream);border:1.5px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.1rem;flex-shrink:0;
+  transition:background .2s,transform .2s
+}
+.situ:hover .situ-arrow{background:var(--yellow);border-color:var(--yellow-d);transform:rotate(45deg)}
+
+/* Colores por situ */
+.situ:nth-child(1):hover{border-color:var(--green);box-shadow:0 8px 0 rgba(200,245,160,.4)}
+.situ:nth-child(2):hover{border-color:var(--pink);box-shadow:0 8px 0 rgba(255,179,209,.4)}
+.situ:nth-child(3):hover{border-color:var(--blue);box-shadow:0 8px 0 rgba(179,212,255,.4)}
+
+/* ── BIO / GESTO ── */
+.bio-section{
+  padding:24px 0 80px;
+  opacity:0;animation:fade-in .7s .65s forwards
+}
+
+.bio-card{
+  background:var(--card);border:1.5px solid var(--border);border-radius:24px;
+  padding:36px;display:grid;grid-template-columns:auto 1fr;gap:32px;align-items:start;
+  box-shadow:0 2px 0 var(--border)
+}
+
+.bio-avatar-wrap{position:relative}
+.bio-avatar{
+  width:90px;height:90px;border-radius:50%;
+  background:var(--yellow);border:3px solid var(--dark);
+  display:flex;align-items:center;justify-content:center;
+  font-size:2.5rem;overflow:hidden;
+  box-shadow:4px 4px 0 var(--dark)
+}
+.bio-badge{
+  position:absolute;top:-8px;right:-12px;
+  background:var(--pink);border:2px solid var(--dark);border-radius:8px;
+  padding:4px 8px;font-family:'DM Mono',monospace;
+  font-size:.6rem;font-weight:500;letter-spacing:.1em;
+  color:var(--dark);text-transform:uppercase;white-space:nowrap;
+  box-shadow:2px 2px 0 var(--dark)
+}
+
+.bio-name{font-size:1.6rem;font-weight:900;letter-spacing:-.04em;margin-bottom:4px}
+.bio-name span{color:var(--yellow-d)}
+.bio-role{font-size:.82rem;font-weight:700;color:var(--light);letter-spacing:.01em;margin-bottom:16px}
+.bio-txt{font-size:.9rem;font-weight:500;color:var(--mid);line-height:1.7;margin-bottom:20px}
+
+.bio-chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{
+  background:var(--cream);border:1.5px solid var(--border);border-radius:100px;
+  padding:5px 12px;font-size:.75rem;font-weight:700;color:var(--dark)
+}
+.chip.y{background:var(--yellow);border-color:transparent}
+.chip.g{background:var(--green);border-color:transparent}
+
+.bio-cita{
+  margin-top:24px;padding:20px 24px;
+  background:var(--cream);border-radius:14px;border-left:3px solid var(--yellow);
+  font-size:.9rem;font-style:italic;font-weight:600;color:var(--mid);line-height:1.65
+}
+
+/* ── FLOAT ELEMENTS decorativos ── */
+.float-nota{
+  position:fixed;pointer-events:none;z-index:0;
+  background:var(--card);border:1.5px solid var(--border);border-radius:8px;
+  padding:8px 12px;font-family:'DM Mono',monospace;font-size:.6rem;
+  letter-spacing:.08em;color:var(--light);
+  box-shadow:2px 2px 0 rgba(0,0,0,.06);
+  animation:float-n var(--dur) var(--del) ease-in-out infinite;
+  opacity:0
+}
+@keyframes float-n{
+  0%{opacity:0;transform:translate(0,8px) rotate(var(--rot))}
+  15%{opacity:.7}
+  85%{opacity:.5}
+  100%{opacity:0;transform:translate(var(--dx),var(--dy)) rotate(calc(var(--rot)+1.5deg))}
+}
+
+/* ── ANIM ── */
+@keyframes fade-in{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── RESPONSIVE ── */
+@media(max-width:600px){
+  .cambios{grid-template-columns:1fr}
+  .bio-card{grid-template-columns:1fr}
+  .hero-h1{font-size:2.6rem}
+  .yellow-block{padding:32px 24px}
+  .situ{grid-template-columns:1fr}
+  .situ-arrow{display:none}
+}
+</style>
+</head>
+<body>
+
+<div class="cur" id="cur"></div>
+
+<!-- Notas decorativas flotantes -->
+<div id="floats"></div>
+
+<div class="wrap">
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">
+      <span class="nav-dot"></span>
+      facilitacion.es
+    </div>
+    <a href="mailto:hola@facilitacion.es" class="nav-pill">Hablamos →</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-tags">
+      <span class="tag yellow">✦ Miro MVP</span>
+      <span class="tag"><span class="dot"></span>Pensamiento visual</span>
+      <span class="tag"><span class="dot"></span>Facilitador certificado</span>
+      <span class="tag"><span class="dot"></span>Madrid</span>
+    </div>
+
+    <h1 class="hero-h1">
+      Haz que tu equipo<br>
+      piense <span class="hl">en voz alta.</span>
+    </h1>
+
+    <p class="hero-sub">
+      Trabajo con equipos que tienen mucho que decir pero poco espacio para decirlo. Abrimos ese espacio, lo hacemos visible — y en esa visibilidad aparece lo que de verdad importa.
+    </p>
+
+    <div class="hero-actions">
+      <a href="mailto:hola@facilitacion.es" class="btn-main">
+        Cuéntame tu situación <span class="arrow">→</span>
+      </a>
+      <a href="#situaciones" class="btn-ghost">Ver cómo trabajo</a>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat-card">
+        <div class="stat-n">6<span>+</span></div>
+        <div class="stat-l">certificaciones<br>Miro oficiales</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-n">20<span>+</span></div>
+        <div class="stat-l">boards y<br>workshops</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-n">1<span>º</span></div>
+        <div class="stat-l">MVP Miro<br>en España</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- YELLOW BLOCK -->
+  <section class="yellow-block">
+    <p class="yb-label">lo que transforma</p>
+    <h2 class="yb-title">Cuando el pensamiento<br>se vuelve visible, todo cambia.</h2>
+    <p class="yb-sub">No necesitas saber qué es Miro. Necesitas que tu equipo deje de dar vueltas al mismo problema.</p>
+
+    <div class="cambios">
+      <div class="cambio">
+        <p class="cambio-tag">antes</p>
+        <p class="cambio-txt">Reunión sin decisión. La semana siguiente, lo mismo.</p>
+      </div>
+      <div class="cambio after">
+        <p class="cambio-tag">después</p>
+        <p class="cambio-txt">Un mapa que el equipo construyó y entiende.</p>
+      </div>
+      <div class="cambio">
+        <p class="cambio-tag">antes</p>
+        <p class="cambio-txt">Ideas dispersas en correos y cabezas.</p>
+      </div>
+      <div class="cambio after">
+        <p class="cambio-tag">después</p>
+        <p class="cambio-txt">Una pared viva. Cada voz tiene un lugar.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SITUACIONES -->
+  <section class="situaciones" id="situaciones">
+    <div class="sec-header">
+      <h2 class="sec-title">¿Cuál es tu situación?</h2>
+      <span class="sec-sub">elige la tuya</span>
+    </div>
+
+    <div class="situ-grid">
+      <a href="mailto:hola@facilitacion.es?subject=Mi+equipo+no+avanza" class="situ">
+        <div>
+          <p class="situ-n">situación 01</p>
+          <p class="situ-title">Mi equipo tiene energía pero no avanza.</p>
+          <p class="situ-desc">Hacemos reuniones, tomamos notas, asignamos tareas. Y la semana siguiente estamos en el mismo punto exacto.</p>
+        </div>
+        <div class="situ-arrow">→</div>
+      </a>
+
+      <a href="mailto:hola@facilitacion.es?subject=Necesito+pensar+en+voz+alta" class="situ">
+        <div>
+          <p class="situ-n">situación 02</p>
+          <p class="situ-title">Tengo un proyecto grande y necesito pensar en voz alta.</p>
+          <p class="situ-desc">No busco respuestas. Busco el espacio y las preguntas correctas para encontrarlas yo mismo.</p>
+        </div>
+        <div class="situ-arrow">→</div>
+      </a>
+
+      <a href="mailto:hola@facilitacion.es?subject=Quiero+aprender+a+facilitar" class="situ">
+        <div>
+          <p class="situ-n">situación 03</p>
+          <p class="situ-title">Quiero aprender a facilitar grupos.</p>
+          <p class="situ-desc">Lidero equipos y sé que hay algo más. Una forma de hacer que el pensamiento colectivo fluya de verdad. Quiero aprender eso.</p>
+        </div>
+        <div class="situ-arrow">→</div>
+      </a>
+    </div>
+  </section>
+
+  <!-- BIO -->
+  <section class="bio-section">
+    <div class="sec-header">
+      <h2 class="sec-title">Hola, soy Victor</h2>
+    </div>
+
+    <div class="bio-card">
+      <div class="bio-avatar-wrap">
+        <div class="bio-avatar">🧢</div>
+        <div class="bio-badge">Miro MVP</div>
+      </div>
+      <div>
+        <h3 class="bio-name">Victor <span>Paredes</span></h3>
+        <p class="bio-role">Diseñador · Facilitador · Miro MVP · Madrid</p>
+        <p class="bio-txt">
+          Soy tu guía para que el pensamiento de tu equipo deje de estar atrapado en diapositivas y correos, y empiece a vivir en un espacio donde todos puedan verlo, moverlo y construirlo juntos.<br><br>
+          Miro me reconoce oficialmente como MVP — uno de los referentes en pensamiento visual y facilitación en España.
+        </p>
+        <div class="bio-chips">
+          <span class="chip y">✦ Miro MVP</span>
+          <span class="chip g">Facilitador certificado</span>
+          <span class="chip">Design thinking</span>
+          <span class="chip">Workshops</span>
+          <span class="chip">Madrid</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="bio-cita">
+      "La pregunta correcta, en el momento correcto, cambia lo que un grupo cree posible."
+    </div>
+  </section>
+
+</div><!-- /wrap -->
+
+<script>
+// Cursor
+const cur=document.getElementById('cur');
+let mx=0,my=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px'});
+document.querySelectorAll('a,button,.situ,.stat-card').forEach(el=>{
+  el.addEventListener('mouseenter',()=>cur.classList.add('big'));
+  el.addEventListener('mouseleave',()=>cur.classList.remove('big'));
+});
+
+// Sticky notes decorativas
+const container=document.getElementById('floats');
+const notas=['equipo bloqueado','¿qué queremos?','prioridad #1','insight clave','próximo paso','voz no escuchada','acción clara','¿y si…?','mapa del sistema','decisión pendiente'];
+notas.forEach((t,i)=>{
+  const n=document.createElement('div');
+  n.className='float-nota';n.textContent=t;
+  const side=Math.random()>.5;
+  const rot=(Math.random()-.5)*8;
+  n.style.cssText=`
+    ${side?'left':'right'}:${Math.random()*80+10}px;
+    top:${10+i*9}%;
+    --dur:${16+Math.random()*10}s;
+    --del:${-Math.random()*16}s;
+    --rot:${rot}deg;
+    --dx:${(Math.random()-.5)*20}px;
+    --dy:${-20-Math.random()*20}px;
+  `;
+  container.appendChild(n);
+});
+</script>
+</body>
+</html>
