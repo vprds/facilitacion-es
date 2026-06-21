@@ -234,6 +234,50 @@ nav{
 .situ:nth-child(2):hover{border-color:var(--pink);box-shadow:0 8px 0 rgba(255,179,209,.4)}
 .situ:nth-child(3):hover{border-color:var(--blue);box-shadow:0 8px 0 rgba(179,212,255,.4)}
 
+/* ── FORMATOS ── */
+.formatos{
+  padding:24px 0;
+  opacity:0;animation:fade-in .7s .6s forwards
+}
+.formato-intro{
+  font-size:.92rem;font-weight:500;color:var(--mid);line-height:1.65;
+  max-width:540px;margin:-16px 0 28px
+}
+.formato-grid{display:grid;grid-template-columns:1fr;gap:12px}
+.formato{
+  background:var(--card);border:1.5px solid var(--border);border-radius:20px;
+  padding:28px;display:grid;grid-template-columns:1fr auto;gap:16px;align-items:center;
+  text-decoration:none;color:inherit;cursor:none;
+  box-shadow:0 2px 0 var(--border);
+  transition:transform .2s,box-shadow .2s,border-color .2s
+}
+.formato:hover{transform:translateY(-3px);box-shadow:0 8px 0 var(--border);border-color:var(--dark)}
+.formato-n{
+  font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:.15em;
+  color:var(--light);text-transform:uppercase;margin-bottom:8px
+}
+.formato-title{font-size:1.1rem;font-weight:800;letter-spacing:-.02em;margin-bottom:6px}
+.formato-meta{
+  font-family:'DM Mono',monospace;font-size:.68rem;letter-spacing:.06em;
+  color:var(--yellow-d);font-weight:500;margin-bottom:10px
+}
+.formato-desc{font-size:.85rem;font-weight:500;color:var(--mid);line-height:1.55}
+.formato-result{
+  margin-top:10px;font-size:.82rem;font-weight:700;color:var(--dark);line-height:1.45
+}
+.formato-result span{color:var(--light);font-weight:600}
+.formato-arrow{
+  width:44px;height:44px;border-radius:50%;
+  background:var(--cream);border:1.5px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.1rem;flex-shrink:0;
+  transition:background .2s,transform .2s
+}
+.formato:hover .formato-arrow{background:var(--yellow);border-color:var(--yellow-d);transform:rotate(45deg)}
+.formato:nth-child(1):hover{border-color:var(--green);box-shadow:0 8px 0 rgba(200,245,160,.4)}
+.formato:nth-child(2):hover{border-color:var(--pink);box-shadow:0 8px 0 rgba(255,179,209,.4)}
+.formato:nth-child(3):hover{border-color:var(--blue);box-shadow:0 8px 0 rgba(179,212,255,.4)}
+
 /* ── MIRA CÓMO PIENSO ── */
 .muestras{
   padding:24px 0;
@@ -364,6 +408,8 @@ nav{
   .yellow-block{padding:32px 24px}
   .situ{grid-template-columns:1fr}
   .situ-arrow{display:none}
+  .formato{grid-template-columns:1fr}
+  .formato-arrow{display:none}
 }
 </style>
 </head>
@@ -458,7 +504,7 @@ nav{
       <h2 class="sec-title">Mira cómo pienso</h2>
       <span class="sec-sub">antes de hablar</span>
     </div>
-    <p class="muestra-intro">Tres exploraciones abiertas — mapas reales donde se ve el método antes de contratar nada. Entra, muévelo, entiéndelo.</p>
+    <p class="muestra-intro">Tres exploraciones abiertas — mapas reales donde se ve el método antes de contratar nada. Entra, muévelo, entiéndelo. No son el servicio: son prueba de criterio.</p>
 
     <div class="muestra-grid">
       <a href="https://miro.com/app/board/uXjVLtwk_w0=/" class="muestra" target="_blank" rel="noopener">
@@ -496,6 +542,7 @@ nav{
       <h2 class="sec-title">¿Cuál es tu situación?</h2>
       <span class="sec-sub">elige la tuya</span>
     </div>
+    <p class="formato-intro">Si te reconoces en alguna, escríbeme. Primera conversación sin compromiso — te digo qué formato encaja.</p>
 
     <div class="situ-grid">
       <a href="mailto:hola@facilitacion.es?subject=Mi+equipo+no+avanza" class="situ">
@@ -523,6 +570,50 @@ nav{
           <p class="situ-desc">Lidero equipos y sé que hay algo más. Una forma de hacer que el pensamiento colectivo fluya de verdad. Quiero aprender eso.</p>
         </div>
         <div class="situ-arrow">→</div>
+      </a>
+    </div>
+  </section>
+
+  <!-- FORMATOS -->
+  <section class="formatos" id="formatos">
+    <div class="sec-header">
+      <h2 class="sec-title">Tres formatos</h2>
+      <span class="sec-sub">qué hacemos juntos</span>
+    </div>
+    <p class="formato-intro">Cada situación desemboca en un formato concreto — con duración, entrega y resultado claro. Sin catálogo genérico: esto es lo que contratas cuando encaja.</p>
+
+    <div class="formato-grid">
+      <a href="mailto:hola@facilitacion.es?subject=Mapa+de+avance" class="formato">
+        <div>
+          <p class="formato-n">formato 01 · situación bloqueo de equipo</p>
+          <p class="formato-title">Mapa de avance</p>
+          <p class="formato-meta">medio día · 3–4 h · Madrid presencial o remoto</p>
+          <p class="formato-desc">Sprint facilitado con tu equipo. Dejamos de dar vueltas y construimos un mapa compartido — decisiones, dueños, fechas — en una sola sesión.</p>
+          <p class="formato-result"><span>Te quedas con →</span> un mapa vivo que el equipo construyó y entiende</p>
+        </div>
+        <div class="formato-arrow">→</div>
+      </a>
+
+      <a href="mailto:hola@facilitacion.es?subject=Espacio+de+pensamiento" class="formato">
+        <div>
+          <p class="formato-n">formato 02 · proyecto grande en solitario</p>
+          <p class="formato-title">Espacio de pensamiento</p>
+          <p class="formato-meta">2–3 h · 1:1 o equipo reducido (≤5)</p>
+          <p class="formato-desc">Sesión de alta confidencialidad. No busco darte respuestas empaquetadas — abro el espacio y las preguntas para que las encuentres tú.</p>
+          <p class="formato-result"><span>Te quedas con →</span> claridad sobre qué importa y qué no — reflejada en un board espejo, no en un informe</p>
+        </div>
+        <div class="formato-arrow">→</div>
+      </a>
+
+      <a href="mailto:hola@facilitacion.es?subject=Escuela+de+facilitacion" class="formato">
+        <div>
+          <p class="formato-n">formato 03 · aprender el oficio</p>
+          <p class="formato-title">Escuela de facilitación</p>
+          <p class="formato-meta">día completo · presencial Madrid · cupo 8–12</p>
+          <p class="formato-desc">Taller práctico: facilitas entre vosotros antes de que yo cierre. El método se aprende haciendo — no viendo diapositivas.</p>
+          <p class="formato-result"><span>Te quedas con →</span> haber facilitado una sesión real, con feedback y estructura reutilizable</p>
+        </div>
+        <div class="formato-arrow">→</div>
       </a>
     </div>
   </section>
@@ -575,7 +666,7 @@ nav{
 const cur=document.getElementById('cur');
 let mx=0,my=0;
 document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px'});
-document.querySelectorAll('a,button,.situ,.stat-card,.muestra').forEach(el=>{
+document.querySelectorAll('a,button,.situ,.stat-card,.muestra,.formato').forEach(el=>{
   el.addEventListener('mouseenter',()=>cur.classList.add('big'));
   el.addEventListener('mouseleave',()=>cur.classList.remove('big'));
 });
