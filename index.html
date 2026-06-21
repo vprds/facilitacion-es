@@ -10,7 +10,7 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://facilitacion.es/">
 <meta property="og:title" content="facilitacion.es — Facilitación visual">
-<meta property="og:description" content="Que tu equipo deje de dar vueltas al mismo problema. Workshops y facilitación visual en español.">
+<meta property="og:description" content="Tres situaciones, tres formatos concretos. Facilitación visual para equipos en España — primera conversación sin compromiso.">
 <meta property="og:image" content="https://facilitacion.es/og-image.png">
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
@@ -21,7 +21,7 @@
 <meta name="twitter:site" content="@0xbik">
 <meta name="twitter:creator" content="@0xbik">
 <meta name="twitter:title" content="facilitacion.es — Facilitación visual">
-<meta name="twitter:description" content="Que tu equipo deje de dar vueltas al mismo problema. Workshops y facilitación visual en español.">
+<meta name="twitter:description" content="Tres situaciones, tres formatos concretos. Facilitación visual para equipos en España — primera conversación sin compromiso.">
 <meta name="twitter:image" content="https://facilitacion.es/og-image.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400;1,700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -83,6 +83,15 @@ nav{
   transition:background .2s,transform .15s
 }
 .nav-pill:hover{background:var(--yellow);color:var(--dark);transform:scale(1.04)}
+.nav-right{display:flex;align-items:center;gap:14px;flex-wrap:wrap;justify-content:flex-end}
+.nav-links{display:flex;align-items:center;gap:4px}
+.nav-links a{
+  font-size:.76rem;font-weight:700;color:var(--mid);letter-spacing:.01em;
+  text-decoration:none;cursor:none;border-radius:100px;padding:6px 10px;
+  transition:color .2s,background .2s
+}
+.nav-links a:hover{color:var(--dark);background:rgba(0,0,0,.05)}
+.nav-links a:focus-visible{outline:2px solid var(--yellow);outline-offset:2px}
 
 /* ── HERO ── */
 .hero{
@@ -207,10 +216,11 @@ nav{
 .situ{
   background:var(--card);border:1.5px solid var(--border);border-radius:20px;
   padding:28px;display:grid;grid-template-columns:1fr auto;gap:16px;align-items:center;
-  text-decoration:none;color:inherit;cursor:none;
+  color:inherit;cursor:none;
   box-shadow:0 2px 0 var(--border);
   transition:transform .2s,box-shadow .2s,border-color .2s
 }
+.situ-main{cursor:none}
 .situ:hover{transform:translateY(-3px);box-shadow:0 8px 0 var(--border);border-color:var(--dark)}
 
 .situ-n{
@@ -219,12 +229,25 @@ nav{
 }
 .situ-title{font-size:1.1rem;font-weight:800;letter-spacing:-.02em;margin-bottom:8px}
 .situ-desc{font-size:.85rem;font-weight:500;color:var(--mid);line-height:1.55}
+.situ-bridge{
+  margin-top:12px;font-size:.78rem;font-weight:700;color:var(--dark);
+  display:flex;align-items:center;gap:8px;flex-wrap:wrap
+}
+.situ-bridge-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.situ-bridge a{
+  color:var(--mid);font-weight:700;text-decoration:none;border-bottom:1.5px solid var(--border);
+  transition:color .2s,border-color .2s
+}
+.situ-bridge a:hover{color:var(--dark);border-color:var(--dark)}
+.situ-c01{border-left:4px solid var(--green)}
+.situ-c02{border-left:4px solid var(--pink)}
+.situ-c03{border-left:4px solid var(--blue)}
 
 .situ-arrow{
   width:44px;height:44px;border-radius:50%;
   background:var(--cream);border:1.5px solid var(--border);
   display:flex;align-items:center;justify-content:center;
-  font-size:1.1rem;flex-shrink:0;
+  font-size:1.1rem;flex-shrink:0;text-decoration:none;color:inherit;
   transition:background .2s,transform .2s
 }
 .situ:hover .situ-arrow{background:var(--yellow);border-color:var(--yellow-d);transform:rotate(45deg)}
@@ -277,6 +300,31 @@ nav{
 .formato:nth-child(1):hover{border-color:var(--green);box-shadow:0 8px 0 rgba(200,245,160,.4)}
 .formato:nth-child(2):hover{border-color:var(--pink);box-shadow:0 8px 0 rgba(255,179,209,.4)}
 .formato:nth-child(3):hover{border-color:var(--blue);box-shadow:0 8px 0 rgba(179,212,255,.4)}
+.formato-c01{border-left:4px solid var(--green)}
+.formato-c02{border-left:4px solid var(--pink)}
+.formato-c03{border-left:4px solid var(--blue)}
+
+/* ── PROCESO ── */
+.proceso{
+  padding:24px 0;
+  opacity:0;animation:fade-in .7s .62s forwards
+}
+.proceso-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.paso{
+  background:var(--card);border:1.5px solid var(--border);border-radius:18px;
+  padding:22px 20px;box-shadow:0 2px 0 var(--border);
+  transition:transform .2s,box-shadow .2s
+}
+.paso:hover{transform:translateY(-2px);box-shadow:0 6px 0 var(--border)}
+.paso-n{
+  font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:.14em;
+  color:var(--light);text-transform:uppercase;margin-bottom:10px
+}
+.paso-title{font-size:.95rem;font-weight:800;letter-spacing:-.02em;margin-bottom:8px;line-height:1.3}
+.paso-desc{font-size:.82rem;font-weight:500;color:var(--mid);line-height:1.55}
+.paso:nth-child(1){border-top:3px solid var(--green)}
+.paso:nth-child(2){border-top:3px solid var(--yellow)}
+.paso:nth-child(3){border-top:3px solid var(--blue)}
 
 /* ── MIRA CÓMO PIENSO ── */
 .muestras{
@@ -410,6 +458,8 @@ nav{
   .situ-arrow{display:none}
   .formato{grid-template-columns:1fr}
   .formato-arrow{display:none}
+  .nav-links{display:none}
+  .proceso-grid{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -428,7 +478,15 @@ nav{
       <span class="nav-dot"></span>
       facilitacion.es
     </div>
-    <a href="mailto:hola@facilitacion.es" class="nav-pill">Hablamos →</a>
+    <div class="nav-right">
+      <div class="nav-links">
+        <a href="#muestra">Muestra</a>
+        <a href="#situaciones">Situaciones</a>
+        <a href="#formatos">Formatos</a>
+        <a href="#proceso">Proceso</a>
+      </div>
+      <a href="mailto:hola@facilitacion.es" class="nav-pill" data-mail-subject="Hola desde facilitacion.es">Hablamos →</a>
+    </div>
   </nav>
 
   <!-- HERO -->
@@ -450,7 +508,7 @@ nav{
     </p>
 
     <div class="hero-actions">
-      <a href="mailto:hola@facilitacion.es" class="btn-main">
+      <a href="mailto:hola@facilitacion.es" class="btn-main" data-mail-subject="Cuéntame mi situación">
         Cuéntame tu situación <span class="arrow">→</span>
       </a>
       <a href="#muestra" class="btn-ghost">Ver cómo pienso</a>
@@ -545,32 +603,35 @@ nav{
     <p class="formato-intro">Si te reconoces en alguna, escríbeme. Primera conversación sin compromiso — te digo qué formato encaja.</p>
 
     <div class="situ-grid">
-      <a href="mailto:hola@facilitacion.es?subject=Mi+equipo+no+avanza" class="situ">
-        <div>
+      <article class="situ situ-c01">
+        <div class="situ-main">
           <p class="situ-n">situación 01</p>
           <p class="situ-title">Mi equipo tiene energía pero no avanza.</p>
           <p class="situ-desc">Hacemos reuniones, tomamos notas, asignamos tareas. Y la semana siguiente estamos en el mismo punto exacto.</p>
+          <p class="situ-bridge"><span class="situ-bridge-dot" style="background:var(--green)"></span>→ Formato: <strong>Mapa de avance</strong> · <a href="#formato-01">ver detalle</a></p>
         </div>
-        <div class="situ-arrow">→</div>
-      </a>
+        <a href="mailto:hola@facilitacion.es" class="situ-arrow" data-mail-subject="Mi equipo no avanza — Mapa de avance" data-mail-situ="Mi equipo tiene energía pero no avanza" data-mail-formato="Mapa de avance" aria-label="Escribir sobre situación 01">→</a>
+      </article>
 
-      <a href="mailto:hola@facilitacion.es?subject=Necesito+pensar+en+voz+alta" class="situ">
-        <div>
+      <article class="situ situ-c02">
+        <div class="situ-main">
           <p class="situ-n">situación 02</p>
           <p class="situ-title">Tengo un proyecto grande y necesito pensar en voz alta.</p>
           <p class="situ-desc">No busco respuestas. Busco el espacio y las preguntas correctas para encontrarlas yo mismo.</p>
+          <p class="situ-bridge"><span class="situ-bridge-dot" style="background:var(--pink)"></span>→ Formato: <strong>Espacio de pensamiento</strong> · <a href="#formato-02">ver detalle</a></p>
         </div>
-        <div class="situ-arrow">→</div>
-      </a>
+        <a href="mailto:hola@facilitacion.es" class="situ-arrow" data-mail-subject="Necesito pensar en voz alta — Espacio de pensamiento" data-mail-situ="Tengo un proyecto grande y necesito pensar en voz alta" data-mail-formato="Espacio de pensamiento" aria-label="Escribir sobre situación 02">→</a>
+      </article>
 
-      <a href="mailto:hola@facilitacion.es?subject=Quiero+aprender+a+facilitar" class="situ">
-        <div>
+      <article class="situ situ-c03">
+        <div class="situ-main">
           <p class="situ-n">situación 03</p>
           <p class="situ-title">Quiero aprender a facilitar grupos.</p>
           <p class="situ-desc">Lidero equipos y sé que hay algo más. Una forma de hacer que el pensamiento colectivo fluya de verdad. Quiero aprender eso.</p>
+          <p class="situ-bridge"><span class="situ-bridge-dot" style="background:var(--blue)"></span>→ Formato: <strong>Escuela de facilitación</strong> · <a href="#formato-03">ver detalle</a></p>
         </div>
-        <div class="situ-arrow">→</div>
-      </a>
+        <a href="mailto:hola@facilitacion.es" class="situ-arrow" data-mail-subject="Quiero aprender a facilitar — Escuela de facilitación" data-mail-situ="Quiero aprender a facilitar grupos" data-mail-formato="Escuela de facilitación" aria-label="Escribir sobre situación 03">→</a>
+      </article>
     </div>
   </section>
 
@@ -583,7 +644,7 @@ nav{
     <p class="formato-intro">Cada situación desemboca en un formato concreto — con duración, entrega y resultado claro. Sin catálogo genérico: esto es lo que contratas cuando encaja.</p>
 
     <div class="formato-grid">
-      <a href="mailto:hola@facilitacion.es?subject=Mapa+de+avance" class="formato">
+      <a href="mailto:hola@facilitacion.es" class="formato formato-c01" id="formato-01" data-mail-subject="Mapa de avance — solicitud" data-mail-situ="Mi equipo tiene energía pero no avanza" data-mail-formato="Mapa de avance">
         <div>
           <p class="formato-n">formato 01 · situación bloqueo de equipo</p>
           <p class="formato-title">Mapa de avance</p>
@@ -594,7 +655,7 @@ nav{
         <div class="formato-arrow">→</div>
       </a>
 
-      <a href="mailto:hola@facilitacion.es?subject=Espacio+de+pensamiento" class="formato">
+      <a href="mailto:hola@facilitacion.es" class="formato formato-c02" id="formato-02" data-mail-subject="Espacio de pensamiento — solicitud" data-mail-situ="Tengo un proyecto grande y necesito pensar en voz alta" data-mail-formato="Espacio de pensamiento">
         <div>
           <p class="formato-n">formato 02 · proyecto grande en solitario</p>
           <p class="formato-title">Espacio de pensamiento</p>
@@ -605,7 +666,7 @@ nav{
         <div class="formato-arrow">→</div>
       </a>
 
-      <a href="mailto:hola@facilitacion.es?subject=Escuela+de+facilitacion" class="formato">
+      <a href="mailto:hola@facilitacion.es" class="formato formato-c03" id="formato-03" data-mail-subject="Escuela de facilitación — solicitud" data-mail-situ="Quiero aprender a facilitar grupos" data-mail-formato="Escuela de facilitación">
         <div>
           <p class="formato-n">formato 03 · aprender el oficio</p>
           <p class="formato-title">Escuela de facilitación</p>
@@ -618,8 +679,41 @@ nav{
     </div>
   </section>
 
+  <!-- PROCESO -->
+  <section class="proceso" id="proceso">
+    <div class="sec-header">
+      <h2 class="sec-title">Qué pasa cuando escribes</h2>
+      <span class="sec-sub">sin sorpresas</span>
+    </div>
+    <p class="formato-intro">No hay formularios ni checkout. Tres pasos claros desde el primer mail hasta la sesión.</p>
+
+    <div class="proceso-grid">
+      <div class="paso">
+        <p class="paso-n">paso 01</p>
+        <p class="paso-title">Me cuentas la situación</p>
+        <p class="paso-desc">Mail con contexto o una llamada breve. Me dices qué pasa, quién está en el equipo y qué necesitas que cambie.</p>
+      </div>
+      <div class="paso">
+        <p class="paso-n">paso 02</p>
+        <p class="paso-title">Te digo qué formato encaja</p>
+        <p class="paso-desc">Conversación de ~45 min, sin compromiso. Mapa de avance, Espacio de pensamiento o Escuela — lo que tenga sentido para tu caso.</p>
+      </div>
+      <div class="paso">
+        <p class="paso-n">paso 03</p>
+        <p class="paso-title">Sesión facilitada → mapa vivo</p>
+        <p class="paso-desc">Trabajamos juntos en la sesión. Te quedas con un entregable que el grupo construyó — no un informe que alguien redactó por ti.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:24px">
+      <a href="mailto:hola@facilitacion.es" class="btn-main" data-mail-subject="Primera conversación — facilitacion.es">
+        Empezar por aquí <span class="arrow">→</span>
+      </a>
+    </div>
+  </section>
+
   <!-- BIO -->
-  <section class="bio-section">
+  <section class="bio-section" id="bio">
     <div class="sec-header">
       <h2 class="sec-title">Hola, soy Victor</h2>
     </div>
@@ -666,9 +760,33 @@ nav{
 const cur=document.getElementById('cur');
 let mx=0,my=0;
 document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px'});
-document.querySelectorAll('a,button,.situ,.stat-card,.muestra,.formato').forEach(el=>{
+document.querySelectorAll('a,button,.situ,.stat-card,.muestra,.formato,.paso').forEach(el=>{
   el.addEventListener('mouseenter',()=>cur.classList.add('big'));
   el.addEventListener('mouseleave',()=>cur.classList.remove('big'));
+});
+
+// Mailto con cuerpo prefilled
+function buildMailto(el){
+  const subject=el.dataset.mailSubject||'Hola desde facilitacion.es';
+  const situ=el.dataset.mailSitu||'';
+  const formato=el.dataset.mailFormato||'';
+  const lines=['Hola Victor,',''];
+  if(situ) lines.push('Mi situación: '+situ);
+  if(formato) lines.push('Formato: '+formato);
+  if(situ||formato) lines.push('');
+  lines.push('Contexto:','Equipo/empresa:','Lo que necesito:');
+  el.href='mailto:hola@facilitacion.es?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(lines.join('\n'));
+}
+document.querySelectorAll('[data-mail-subject]').forEach(buildMailto);
+
+// Click en cuerpo de situación → mailto (excepto link ver detalle)
+document.querySelectorAll('.situ').forEach(card=>{
+  const mail=card.querySelector('.situ-arrow');
+  if(!mail) return;
+  card.querySelector('.situ-main')?.addEventListener('click',e=>{
+    if(e.target.closest('a[href^="#"]')) return;
+    window.location.href=mail.href;
+  });
 });
 
 // Sticky notes decorativas
