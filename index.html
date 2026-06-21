@@ -234,6 +234,46 @@ nav{
 .situ:nth-child(2):hover{border-color:var(--pink);box-shadow:0 8px 0 rgba(255,179,209,.4)}
 .situ:nth-child(3):hover{border-color:var(--blue);box-shadow:0 8px 0 rgba(179,212,255,.4)}
 
+/* ── MIRA CÓMO PIENSO ── */
+.muestras{
+  padding:24px 0;
+  opacity:0;animation:fade-in .7s .55s forwards
+}
+.muestra-intro{
+  font-size:.92rem;font-weight:500;color:var(--mid);line-height:1.65;
+  max-width:520px;margin:-16px 0 28px
+}
+.muestra-grid{display:grid;grid-template-columns:1fr;gap:10px}
+.muestra{
+  background:var(--card);border:1.5px solid var(--border);border-radius:18px;
+  padding:22px 24px;display:grid;grid-template-columns:1fr auto;gap:14px;align-items:center;
+  text-decoration:none;color:inherit;cursor:none;
+  box-shadow:0 2px 0 var(--border);
+  transition:transform .2s,box-shadow .2s,border-color .2s
+}
+.muestra:hover{transform:translateY(-3px);box-shadow:0 8px 0 var(--border);border-color:var(--dark)}
+.muestra-tag{
+  font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:.14em;
+  color:var(--green);text-transform:uppercase;margin-bottom:6px;
+  display:flex;align-items:center;gap:6px
+}
+.muestra-tag::before{
+  content:'';width:6px;height:6px;border-radius:50%;background:var(--green)
+}
+.muestra-title{font-size:1rem;font-weight:800;letter-spacing:-.02em;margin-bottom:6px}
+.muestra-desc{font-size:.84rem;font-weight:500;color:var(--mid);line-height:1.5;font-style:italic}
+.muestra-arrow{
+  width:40px;height:40px;border-radius:50%;
+  background:var(--cream);border:1.5px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  font-size:.95rem;flex-shrink:0;
+  transition:background .2s,transform .2s
+}
+.muestra:hover .muestra-arrow{background:var(--yellow);border-color:var(--yellow-d);transform:rotate(-45deg)}
+.muestra:nth-child(1):hover{border-color:var(--green);box-shadow:0 8px 0 rgba(200,245,160,.35)}
+.muestra:nth-child(2):hover{border-color:var(--yellow-d);box-shadow:0 8px 0 rgba(255,208,47,.35)}
+.muestra:nth-child(3):hover{border-color:var(--purple);box-shadow:0 8px 0 rgba(221,179,255,.35)}
+
 /* ── BIO / GESTO ── */
 .bio-section{
   padding:24px 0 80px;
@@ -367,7 +407,7 @@ nav{
       <a href="mailto:hola@facilitacion.es" class="btn-main">
         Cuéntame tu situación <span class="arrow">→</span>
       </a>
-      <a href="#situaciones" class="btn-ghost">Ver cómo trabajo</a>
+      <a href="#muestra" class="btn-ghost">Ver cómo pienso</a>
     </div>
 
     <div class="hero-stats">
@@ -409,6 +449,44 @@ nav{
         <p class="cambio-tag">después</p>
         <p class="cambio-txt">Una pared viva. Cada voz tiene un lugar.</p>
       </div>
+    </div>
+  </section>
+
+  <!-- MIRA CÓMO PIENSO -->
+  <section class="muestras" id="muestra">
+    <div class="sec-header">
+      <h2 class="sec-title">Mira cómo pienso</h2>
+      <span class="sec-sub">antes de hablar</span>
+    </div>
+    <p class="muestra-intro">Tres exploraciones abiertas — mapas reales donde se ve el método antes de contratar nada. Entra, muévelo, entiéndelo.</p>
+
+    <div class="muestra-grid">
+      <a href="https://miro.com/app/board/uXjVLtwk_w0=/" class="muestra" target="_blank" rel="noopener">
+        <div>
+          <p class="muestra-tag">exploración abierta</p>
+          <p class="muestra-title">Layout Design</p>
+          <p class="muestra-desc">"Así se ve un problema cuando deja de estar en la cabeza de uno."</p>
+        </div>
+        <div class="muestra-arrow">↗</div>
+      </a>
+
+      <a href="https://miro.com/app/board/uXjVLtycb7g=/" class="muestra" target="_blank" rel="noopener">
+        <div>
+          <p class="muestra-tag">exploración abierta</p>
+          <p class="muestra-title">Landing Page</p>
+          <p class="muestra-desc">"Así se diseña un recorrido — igual que una sesión de equipo."</p>
+        </div>
+        <div class="muestra-arrow">↗</div>
+      </a>
+
+      <a href="https://miro.com/app/board/uXjVK9-aRqk=/" class="muestra" target="_blank" rel="noopener">
+        <div>
+          <p class="muestra-tag">exploración abierta</p>
+          <p class="muestra-title">Color HEXploration</p>
+          <p class="muestra-desc">"Así se alinea un grupo en una decisión visual."</p>
+        </div>
+        <div class="muestra-arrow">↗</div>
+      </a>
     </div>
   </section>
 
@@ -497,7 +575,7 @@ nav{
 const cur=document.getElementById('cur');
 let mx=0,my=0;
 document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px'});
-document.querySelectorAll('a,button,.situ,.stat-card').forEach(el=>{
+document.querySelectorAll('a,button,.situ,.stat-card,.muestra').forEach(el=>{
   el.addEventListener('mouseenter',()=>cur.classList.add('big'));
   el.addEventListener('mouseleave',()=>cur.classList.remove('big'));
 });
